@@ -1,0 +1,179 @@
+[
+    {
+      "odata.type": "SP.Data.IncidentesListItem",
+      "odata.id": "67fd5b42-6e03-4ab9-8964-35b42044d8a1",
+      "odata.etag": "\"24\"",
+      "odata.editLink": "Web/Lists(guid'd68085c2-24d1-4353-81ee-3f1201b62f17')/Items(1)",
+      "FileSystemObjectType": 0,
+      "Id": 1,
+      "ServerRedirectedEmbedUri": null,
+      "ServerRedirectedEmbedUrl": "",
+      "Pais": "Uruguay",
+      "Title": "Caida de sistema",
+      "Detalle": "<div class=\"ExternalClassE61D15AF55344834A92C0657CF77027D\"><div style=\"font-family&#58;Calibri, Arial, Helvetica, sans-serif;font-size&#58;11pt;color&#58;rgb(0, 0, 0);\"><span style=\"color&#58;black;\">​</span>Error al grabar campaña<img style=\"font-size&#58;11pt;max-width&#58;100%;\" /></div></div>",
+      "Importancia": "Alta",
+      "Estado": "Abierto",
+      "Negocio": [
+        "FIJA",
+        "MOVIL"
+      ],
+      "AreasAfectada": [
+        "Seguridad de Datos"
+      ],
+      "AreasResponsables": [
+        "Opción 1"
+      ],
+      "ID": 1,
+      "ContentTypeId": "0x0100B12831C0CDA571499566F2C1159A3D50009C3BE93B68690443B831DFD6E704BD4D",
+      "Modified": "2021-12-01T19:32:11Z",
+      "Created": "2021-09-10T18:32:45Z",
+      "AuthorId": 20778,
+      "EditorId": 24,
+      "OData__UIVersionString": "24.0",
+      "Attachments": true,
+      "GUID": "e24ba035-8845-46e8-865b-c1ab898d7a1b",
+      "ComplianceAssetId": null
+    },
+    {
+      "odata.type": "SP.Data.IncidentesListItem",
+      "odata.id": "d5c6ca23-c1c5-4efb-aaa6-a17ed5e04bd2",
+      "odata.etag": "\"2\"",
+      "odata.editLink": "Web/Lists(guid'd68085c2-24d1-4353-81ee-3f1201b62f17')/Items(2)",
+      "FileSystemObjectType": 0,
+      "Id": 2,
+      "ServerRedirectedEmbedUri": null,
+      "ServerRedirectedEmbedUrl": "",
+      "Pais": "Argentina",
+      "Title": "Titulo 2",
+      "Detalle": "<div class=\"ExternalClassA5CCBED9BCC44636B01DB461086B5753\"><div style=\"font-family&#58;Calibri, Arial, Helvetica, sans-serif;font-size&#58;11pt;color&#58;rgb(0, 0, 0);\"><span style=\"color&#58;black;\">​detalle 2</span><br></div></div>",
+      "Importancia": "Ninguna",
+      "Estado": "Abierto",
+      "Negocio": [
+        "FIJA"
+      ],
+      "AreasAfectada": [
+        "Digitalizacion",
+        "Stealth Comercial"
+      ],
+      "AreasResponsables": [
+        "Opción 2"
+      ],
+      "ID": 2,
+      "ContentTypeId": "0x0100B12831C0CDA571499566F2C1159A3D50009C3BE93B68690443B831DFD6E704BD4D",
+      "Modified": "2021-12-01T19:36:35Z",
+      "Created": "2021-11-25T14:19:05Z",
+      "AuthorId": 20778,
+      "EditorId": 24,
+      "OData__UIVersionString": "2.0",
+      "Attachments": false,
+      "GUID": "3723ac9f-daa6-448b-95b9-3f4ab90f3bef",
+      "ComplianceAssetId": null
+    },
+    {
+      "odata.type": "SP.Data.IncidentesListItem",
+      "odata.id": "34e40be8-59df-4a88-aff3-a406cdd06732",
+      "odata.etag": "\"3\"",
+      "odata.editLink": "Web/Lists(guid'd68085c2-24d1-4353-81ee-3f1201b62f17')/Items(3)",
+      "FileSystemObjectType": 0,
+      "Id": 3,
+      "ServerRedirectedEmbedUri": null,
+      "ServerRedirectedEmbedUrl": "",
+      "Pais": "Argentina",
+      "Title": "lentejas con azucar morena",
+      "Detalle": "<div class=\"ExternalClass91292E96CA2147288F31AEE04A8D289C\"><div style=\"font-family&#58;Calibri, Arial, Helvetica, sans-serif;font-size&#58;11pt;color&#58;rgb(0, 0, 0);\"><span style=\"color&#58;black;\">​ssssss</span><br></div></div>",
+      "Importancia": "Alta",
+      "Estado": "Abierto",
+      "Negocio": [
+        "NINGUNO",
+        "MOVIL"
+      ],
+      "AreasAfectada": [
+        "Portabilidad",
+        "Stealth Comercial"
+      ],
+      "AreasResponsables": [
+        "Opción 2"
+      ],
+      "ID": 3,
+      "ContentTypeId": "0x0100B12831C0CDA571499566F2C1159A3D50009C3BE93B68690443B831DFD6E704BD4D",
+      "Modified": "2021-12-01T19:34:49Z",
+      "Created": "2021-12-01T19:32:00Z",
+      "AuthorId": 24,
+      "EditorId": 24,
+      "OData__UIVersionString": "3.0",
+      "Attachments": false,
+      "GUID": "43ccf7d1-73e1-4c49-a2f9-6811a4df7990",
+      "ComplianceAssetId": null
+    },
+    {
+      "odata.type": "SP.Data.IncidentesListItem",
+      "odata.id": "49353727-fb2f-4d70-af1f-fa0837ec6a3f",
+      "odata.etag": "\"3\"",
+      "odata.editLink": "Web/Lists(guid'd68085c2-24d1-4353-81ee-3f1201b62f17')/Items(4)",
+      "FileSystemObjectType": 0,
+      "Id": 4,
+      "ServerRedirectedEmbedUri": null,
+      "ServerRedirectedEmbedUrl": "",
+      "Pais": "Argentina",
+      "Title": "durmio la mona",
+      "Detalle": "<div class=\"ExternalClass91292E96CA2147288F31AEE04A8D289C\"><div style=\"font-family&#58;Calibri, Arial, Helvetica, sans-serif;font-size&#58;11pt;color&#58;rgb(0, 0, 0);\"><span style=\"color&#58;black;\">​ssssss</span><br></div></div>",
+      "Importancia": "Baja",
+      "Estado": "Solucionado",
+      "Negocio": [
+        "NINGUNO",
+        "MOVIL",
+        "FIJA"
+      ],
+      "AreasAfectada": [
+        "Seguridad de Datos"
+      ],
+      "AreasResponsables": [
+        "Opción 1"
+      ],
+      "ID": 4,
+      "ContentTypeId": "0x0100B12831C0CDA571499566F2C1159A3D50009C3BE93B68690443B831DFD6E704BD4D",
+      "Modified": "2021-12-01T19:33:24Z",
+      "Created": "2021-12-01T19:32:18Z",
+      "AuthorId": 24,
+      "EditorId": 24,
+      "OData__UIVersionString": "3.0",
+      "Attachments": false,
+      "GUID": "e7db017f-a767-4276-80a6-b77c680b0e1a",
+      "ComplianceAssetId": null
+    },
+    {
+      "odata.type": "SP.Data.IncidentesListItem",
+      "odata.id": "95f96223-4546-40ed-a1b8-a4be2d0d7642",
+      "odata.etag": "\"5\"",
+      "odata.editLink": "Web/Lists(guid'd68085c2-24d1-4353-81ee-3f1201b62f17')/Items(5)",
+      "FileSystemObjectType": 0,
+      "Id": 5,
+      "ServerRedirectedEmbedUri": null,
+      "ServerRedirectedEmbedUrl": "",
+      "Pais": "Paraguay",
+      "Title": "se escapó la tortuga",
+      "Detalle": "<div class=\"ExternalClass91292E96CA2147288F31AEE04A8D289C\"><div style=\"font-family&#58;Calibri, Arial, Helvetica, sans-serif;font-size&#58;11pt;color&#58;rgb(0, 0, 0);\">xxxxx</div></div>",
+      "Importancia": "Media",
+      "Estado": "Cerrado",
+      "Negocio": [
+        "TODOS"
+      ],
+      "AreasAfectada": [
+        "Seguridad de Datos",
+        "Cater"
+      ],
+      "AreasResponsables": [
+        "Opción 3"
+      ],
+      "ID": 5,
+      "ContentTypeId": "0x0100B12831C0CDA571499566F2C1159A3D50009C3BE93B68690443B831DFD6E704BD4D",
+      "Modified": "2021-12-01T19:34:16Z",
+      "Created": "2021-12-01T19:33:08Z",
+      "AuthorId": 24,
+      "EditorId": 24,
+      "OData__UIVersionString": "5.0",
+      "Attachments": false,
+      "GUID": "99255f7a-f339-437f-8389-1a451b2d56be",
+      "ComplianceAssetId": null
+    }
+  ]
