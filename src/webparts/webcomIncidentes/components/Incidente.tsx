@@ -37,7 +37,7 @@ export const Incidente: React.FunctionComponent<IIncidenteProps> = (props: React
                 style={{marginRight:10, paddingTop:3}}
                 />
                 <Link onClick={toggleHideDialog} color={NeutralColors.black}>
-                    {new Date(i?.Created).toLocaleDateString('es-Ar')} - {i?.Estado} - {i?.Title}
+                    {new Date(i?.Created).toLocaleDateString('es-AR')} - {i?.Estado} - {i?.Title}
                 </Link>
 
                 <Dialog
