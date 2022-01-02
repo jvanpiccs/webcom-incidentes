@@ -17,10 +17,10 @@
 
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
-    "group": { "default": "Other" },
+    "group": { "default": "Webcom" },
     "title": { "default": "Webcom Incidentes" },
     "description": { "default": "Aplicacion para mostrar incidentes." },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "IncidentTriangle",
     "properties": {
       "description": "Webcom Incidentes"
     }
