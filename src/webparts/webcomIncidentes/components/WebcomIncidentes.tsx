@@ -9,10 +9,8 @@ import {
   Text,
   PrimaryButton,
   Shimmer,
-  DefaultButton,
 } from '@fluentui/react';
 import useGetItems from './getItems';
-import { Incidente } from './Incidente';
 import { useBoolean } from '@fluentui/react-hooks';
 import { opcionesEstado } from './opcionesEstado';
 import { ListIncidentes } from './ListIncidentes';
@@ -29,11 +27,14 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
     const [isOpenFilter, { toggle: toggleFilter }] = useBoolean(false);
     const [estado, setEstado] = React.useState(opcionesEstado[0]);
     const [pais, setPais] = React.useState(opcionesPais[0]);
-    const [importancia, setImportancia] = React.useState(opcionesImportancia[0]);
+    const [importancia, setImportancia] = React.useState(
+      opcionesImportancia[0]
+    );
 
     const resetFilters = () => {
       setEstado(opcionesEstado[0]);
       setPais(opcionesPais[0]);
+      setImportancia(opcionesImportancia[0]);
     };
 
     //resultados
@@ -84,16 +85,17 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
               placeholder='Importancia'
               label='Importancia'
               options={opcionesImportancia}
-              style={{ minWidth: importancia.key}}
+              style={{ minWidth: importancia.key }}
+              defaultSelectedKey={importancia.key}
               multiSelect={false}
               onChange={(ev, item) => setImportancia(item)}
             />
-            <Stack horizontal tokens={{childrenGap:10}}>
-              <PrimaryButton
+            <Stack horizontal tokens={{ childrenGap: 10 }}>
+              {/* <PrimaryButton
                 text='Resetear'
                 onClick={() => resetFilters()}
-              />
-              <DefaultButton text='Cerrar' onClick={() => toggleFilter()} />
+              /> */}
+              <PrimaryButton text='Cerrar' onClick={() => toggleFilter()} />
             </Stack>
           </Stack>
         </Panel>
@@ -106,10 +108,9 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
         )}
         {!isLoading && incidentes.length == 0 && (
           <MessageBar messageBarType={MessageBarType.info}>
-            No se encontraron incidentes con los parámetros de filtro utilizados.
+            No se encontraron incidentes bajo los filtros seleccionados.
           </MessageBar>
         )}
-        {/* { !isLoading && incidentes.length > 0 && incidentes.map((i)=> <Incidente item={i}/>)} */}
         {!isLoading && incidentes.length > 0 && (
           <ListIncidentes items={incidentes} />
         )}

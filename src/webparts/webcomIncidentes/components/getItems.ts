@@ -5,16 +5,14 @@ import '@pnp/sp/items';
 
 export default function useGetItems(estado: any, pais: any, importancia:any) {
   const [incidentes, setIncidentes] = useState<any[]>([]);
-  const web = Web('https://testinglala.sharepoint.com/sites/Test/');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       // get all the items from a list
-      let filterPais = pais.key == 'All' ? `Pais eq 'Argentina' or Pais eq 'Paraguay' or Pais eq 'Uruguay'` : `Pais eq '${pais.key}'`;
-      // let filterEstado = estado.key != 'All' ? '' : ` and Estado eq ${estado.key}`;
-
       setIsLoading(true);
+      let filterPais = pais.key == 'All' ? `Pais eq 'Argentina' or Pais eq 'Paraguay' or Pais eq 'Uruguay'` : `Pais eq '${pais.key}'`;
+      
       const items: any[] = await Web(
         'https://claroaup.sharepoint.com/sites/webcom/helpcomercial'
       )
