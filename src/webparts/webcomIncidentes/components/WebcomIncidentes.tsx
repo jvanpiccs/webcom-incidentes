@@ -2,17 +2,22 @@ import * as React from 'react';
 import {
   ActionButton,
   Dropdown,
-  IconButton,
+  MessageBar,
+  MessageBarType,
   Panel,
-  Separator,
   Stack,
   Text,
+  PrimaryButton,
+  Shimmer,
+  DefaultButton,
 } from '@fluentui/react';
 import useGetItems from './getItems';
 import { Incidente } from './Incidente';
 import { useBoolean } from '@fluentui/react-hooks';
 import { opcionesEstado } from './opcionesEstado';
-import { PrimaryButton } from '@microsoft/office-ui-fabric-react-bundle';
+import { ListIncidentes } from './ListIncidentes';
+import { opcionesPais } from './opcionesPais';
+import { opcionesImportancia } from './opcionesImportancia';
 
 export interface IWebcomIncidentesProps {
   description: string;
@@ -20,19 +25,30 @@ export interface IWebcomIncidentesProps {
 
 export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
   (props: React.PropsWithChildren<IWebcomIncidentesProps>) => {
-    const [isOpenFilter, {setTrue:openFilter, setFalse: dissmissFilter, toggle: toggleFilter }] =
-      useBoolean(true);
-
+    //Filtros
+    const [isOpenFilter, { toggle: toggleFilter }] = useBoolean(false);
     const [estado, setEstado] = React.useState(opcionesEstado[0]);
+    const [pais, setPais] = React.useState(opcionesPais[0]);
+    const [importancia, setImportancia] = React.useState(opcionesImportancia[0]);
 
-    const { incidentes } = useGetItems(estado);
+    const resetFilters = () => {
+      setEstado(opcionesEstado[0]);
+      setPais(opcionesPais[0]);
+    };
+
+    //resultados
+    const { incidentes, isLoading } = useGetItems(estado, pais, importancia);
 
     return (
       <Stack>
-        <Stack horizontal horizontalAlign='space-between' verticalAlign='center'>
+        <Stack
+          horizontal
+          horizontalAlign='space-between'
+          verticalAlign='center'
+        >
           <Text variant='large'>Incidentes</Text>
           <ActionButton
-            text='Filtros'
+            text='Filtrar'
             iconProps={{ iconName: 'Filter' }}
             onClick={() => toggleFilter()}
           />
@@ -41,23 +57,62 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
           isLightDismiss
           isBlocking={false}
           isOpen={isOpenFilter}
-          onDismiss={dissmissFilter}
+          onDismiss={toggleFilter}
           closeButtonAriaLabel='Cerrar'
-          headerText='Filtros de Incidentes'
+          headerText='Filtrar'
         >
-          <Dropdown
-            placeholder='Estado'
-            label='Estado'
-            options={opcionesEstado}
-            style={{ minWidth: '150px' }}
-            defaultSelectedKey={estado.key}
-            multiSelect={false}
-            onChange={(ev, item) => setEstado(item)}
-          />
-          <PrimaryButton text='Cerrar' onClick={() => dissmissFilter()} />
+          <Stack tokens={{ childrenGap: 10 }}>
+            <Dropdown
+              label='País'
+              placeholder='País'
+              options={opcionesPais}
+              style={{ minWidth: '150px' }}
+              defaultSelectedKey={pais.key}
+              multiSelect={false}
+              onChange={(ev, item) => setPais(item)}
+            />
+            <Dropdown
+              placeholder='Estado'
+              label='Estado'
+              options={opcionesEstado}
+              style={{ minWidth: '150px' }}
+              defaultSelectedKey={estado.key}
+              multiSelect={false}
+              onChange={(ev, item) => setEstado(item)}
+            />
+            <Dropdown
+              placeholder='Importancia'
+              label='Importancia'
+              options={opcionesImportancia}
+              style={{ minWidth: importancia.key}}
+              multiSelect={false}
+              onChange={(ev, item) => setImportancia(item)}
+            />
+            <Stack horizontal tokens={{childrenGap:10}}>
+              <PrimaryButton
+                text='Resetear'
+                onClick={() => resetFilters()}
+              />
+              <DefaultButton text='Cerrar' onClick={() => toggleFilter()} />
+            </Stack>
+          </Stack>
         </Panel>
-        {incidentes.length > 0 && incidentes.map((i) => <Incidente item={i} />)}
-        {incidentes.length = 0 && `No hay incidentes en estado ${estado.text}`}
+        {isLoading && (
+          <Stack tokens={{ childrenGap: 10 }}>
+            <Shimmer />
+            <Shimmer width={'75%'} />
+            <Shimmer width={'50%'} />
+          </Stack>
+        )}
+        {!isLoading && incidentes.length == 0 && (
+          <MessageBar messageBarType={MessageBarType.info}>
+            No se encontraron incidentes con los parámetros de filtro utilizados.
+          </MessageBar>
+        )}
+        {/* { !isLoading && incidentes.length > 0 && incidentes.map((i)=> <Incidente item={i}/>)} */}
+        {!isLoading && incidentes.length > 0 && (
+          <ListIncidentes items={incidentes} />
+        )}
       </Stack>
     );
   };
