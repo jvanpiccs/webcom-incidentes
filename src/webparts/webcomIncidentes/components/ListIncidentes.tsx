@@ -152,7 +152,6 @@ export const ListIncidentes: React.FunctionComponent<IListIncidentesProps> = (
           isOpen={isOpenViewItem}
           isLightDismiss={true}
           onDismiss={toggleViewItemPanel}
-          type={PanelType.medium}
           headerText={viewItem?.Title}
           closeButtonAriaLabel='Cerrar'
         >
