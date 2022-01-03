@@ -18,7 +18,6 @@ export const ListIncidenteItem: React.FunctionComponent<IListIncidenteItemProps>
     let item = props.item;
 
     const { adjuntos, isLoading } = useGetAdjuntos(item.ID);
-    console.log({ adjuntos });
 
     return (
       <Stack tokens={{ childrenGap: 10 }}>

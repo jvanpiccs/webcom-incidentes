@@ -31,7 +31,6 @@ export default function useGetItems(estado: any, pais: any, importancia:any) {
             .filter(item => importancia.key == 'All' ? item : item.Importancia == importancia.key)
             .sort((a, b) => b['Creado'] - a['Creado']);
         });
-      console.log({ items });
       setIncidentes(items);
       setIsLoading(false);
     }
