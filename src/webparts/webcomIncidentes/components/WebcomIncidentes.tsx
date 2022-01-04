@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {
   ActionButton,
-  Dropdown,
   MessageBar,
   MessageBarType,
-  Panel,
   Stack,
   Text,
-  PrimaryButton,
   Shimmer,
+  Link,
 } from '@fluentui/react';
 import useGetItems from './getItems';
 import { useBoolean } from '@fluentui/react-hooks';
@@ -16,6 +14,8 @@ import { opcionesEstado } from './opcionesEstado';
 import { ListIncidentes } from './ListIncidentes';
 import { opcionesPais } from './opcionesPais';
 import { opcionesImportancia } from './opcionesImportancia';
+import { MotionAnimations } from '@fluentui/react/node_modules/@fluentui/theme';
+import { FilterPanel } from './FilterPanel';
 
 export interface IWebcomIncidentesProps {
   description: string;
@@ -24,7 +24,8 @@ export interface IWebcomIncidentesProps {
 export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
   (props: React.PropsWithChildren<IWebcomIncidentesProps>) => {
     //Filtros
-    const [isOpenFilter, { toggle: toggleFilter }] = useBoolean(false);
+    const [isOpenFilter, { setTrue: openFilter, toggle: toggleFilter }] =
+      useBoolean(false);
     const [estado, setEstado] = React.useState(opcionesEstado[0]);
     const [pais, setPais] = React.useState(opcionesPais[0]);
     const [importancia, setImportancia] = React.useState(
@@ -41,7 +42,7 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
     const { incidentes, isLoading } = useGetItems(estado, pais, importancia);
 
     return (
-      <Stack>
+      <Stack style={{ animation: MotionAnimations.fadeIn }}>
         <Stack
           horizontal
           horizontalAlign='space-between'
@@ -54,51 +55,16 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
             onClick={() => toggleFilter()}
           />
         </Stack>
-        <Panel
-          isLightDismiss
-          isBlocking={false}
-          isOpen={isOpenFilter}
-          onDismiss={toggleFilter}
-          closeButtonAriaLabel='Cerrar'
-          headerText='Filtrar'
-        >
-          <Stack tokens={{ childrenGap: 10 }}>
-            <Dropdown
-              label='País'
-              placeholder='País'
-              options={opcionesPais}
-              style={{ minWidth: '150px' }}
-              defaultSelectedKey={pais.key}
-              multiSelect={false}
-              onChange={(ev, item) => setPais(item)}
-            />
-            <Dropdown
-              placeholder='Estado'
-              label='Estado'
-              options={opcionesEstado}
-              style={{ minWidth: '150px' }}
-              defaultSelectedKey={estado.key}
-              multiSelect={false}
-              onChange={(ev, item) => setEstado(item)}
-            />
-            <Dropdown
-              placeholder='Importancia'
-              label='Importancia'
-              options={opcionesImportancia}
-              style={{ minWidth: importancia.key }}
-              defaultSelectedKey={importancia.key}
-              multiSelect={false}
-              onChange={(ev, item) => setImportancia(item)}
-            />
-            <Stack horizontal tokens={{ childrenGap: 10 }}>
-              {/* <PrimaryButton
-                text='Resetear'
-                onClick={() => resetFilters()}
-              /> */}
-              <PrimaryButton text='Cerrar' onClick={() => toggleFilter()} />
-            </Stack>
-          </Stack>
-        </Panel>
+        <Stack horizontal wrap tokens={{ childrenGap: 5 }} style={{marginBottom:10}}>
+          <Text>Filtros {'>'}</Text>
+          <Link onClick={(ev) => openFilter()}>País {pais.text}</Link>
+          <Text>{'>'}</Text>
+          <Link onClick={(ev) => openFilter()}>{estado.text}</Link>
+          <Text>{'>'}</Text>
+          <Link onClick={(ev) => openFilter()}>
+            Importancia {importancia.text}
+          </Link>
+        </Stack>
         {isLoading && (
           <Stack tokens={{ childrenGap: 10 }}>
             <Shimmer />
@@ -114,6 +80,18 @@ export const WebcomIncidentes: React.FunctionComponent<IWebcomIncidentesProps> =
         {!isLoading && incidentes.length > 0 && (
           <ListIncidentes items={incidentes} />
         )}
+        <FilterPanel
+          {...{
+            isOpenFilter,
+            toggleFilter,
+            pais,
+            estado,
+            importancia,
+            setPais,
+            setEstado,
+            setImportancia,
+          }}
+        />
       </Stack>
     );
   };

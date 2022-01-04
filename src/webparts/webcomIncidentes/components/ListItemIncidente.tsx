@@ -1,117 +1,93 @@
+import * as React from 'react';
 import {
-  Label,
+  DefaultPalette,
+  Icon,
   Link,
   NeutralColors,
+  SemanticColorSlots,
   SharedColors,
   Stack,
   Text,
+  ThemeProvider,
+  DefaultButton,
+  IStackStyles,
 } from '@fluentui/react';
-import * as React from 'react';
-import useGetAdjuntos from './getAdjuntos';
+import { MotionAnimations } from '@fluentui/react/node_modules/@fluentui/theme';
 
-export interface IListIncidenteItemProps {
+export interface IListItemIncidenteProps {
   item: any;
+  openItem: any;
 }
-
-export const ListIncidenteItem: React.FunctionComponent<IListIncidenteItemProps> =
-  (props: React.PropsWithChildren<IListIncidenteItemProps>) => {
-    let item = props.item;
-
-    const { adjuntos, isLoading } = useGetAdjuntos(item.ID);
+const stackStyles: IStackStyles = {
+  root: {
+    animation:MotionAnimations.fadeIn,
+    backgroundColor:NeutralColors.gray10,
+    minWidth:250,
+    maxWidth:300,
+    borderRadius:4,
+    ':hover':{
+        backgroundColor:NeutralColors.gray20,   
+        cursor:'pointer',    
+    }
+  }
+};
+export const ListItemIncidente: React.FunctionComponent<IListItemIncidenteProps> =
+  (props: React.PropsWithChildren<IListItemIncidenteProps>) => {
+    const i = props.item;
+    let colorImportancia =
+      i.Importancia == 'Alta'
+        ? SharedColors.red10
+        : i.Importancia == 'Media'
+        ? SharedColors.orange10
+        : i.Importancia == 'Baja'
+        ? SharedColors.green10
+        : SharedColors.gray40;
+    let iconStatus =
+      i.Estado == 'Abierto'
+        ? 'AlertSolid'
+        : i.Estado == 'Solucionado'
+        ? 'CompletedSolid'
+        : i.Estado == 'Reportado'
+        ? 'DRM'
+        : 'VerifiedBrandSolid';
+    let colorStatus =
+      i.Estado == 'Abierto'
+        ? SharedColors.orange10
+        : i.Estado == 'Solucionado'
+        ? SharedColors.green10
+        : i.Estado == 'Reportado'
+        ? SharedColors.red10
+        : SharedColors.green20;
 
     return (
-      <Stack tokens={{ childrenGap: 10 }}>
-        <div>
-          <Label>País</Label>
-          <Text>{item.Pais}</Text>
-        </div>
-        <div>
-          <Label>Creación del incidente</Label>
-          <Text>{new Date(item.Created).toLocaleString('es-AR')}</Text>
-        </div>
-        <div>
-          <Label>Última modificacion</Label>
-          <Text>{new Date(item.Modified).toLocaleString('es-AR')}</Text>
-        </div>
-        <div>
-          <Label>Estado</Label>
-          <Text>{item.Estado}</Text>
-        </div>
-        <div>
-          <Label>Importancia</Label>
-          <Text>{item.Importancia}</Text>
-        </div>
-        <div>
-          <Label>Negocio</Label>
-          <Stack horizontal>
-            {item.Negocio.map((i) => (
-              <div
-                style={{
-                  padding: 5,
-                  backgroundColor: NeutralColors.gray20,
-                  marginRight: 10,
-                  borderRadius: 2,
-                }}
-              >
-                <Text>{i}</Text>
-              </div>
-            ))}
+      <>
+        <Stack
+          onClick={() => props.openItem(i)}
+          horizontal
+          tokens={{ childrenGap: 5, padding: 10 }}
+
+          styles={stackStyles}
+        >
+          <Icon
+            iconName={iconStatus}
+            style={{ color: colorStatus, paddingTop: 2 }}
+          />
+          <Stack>
+            <Text style={{ fontWeight: 600 }}>{i.Title}</Text>
+            <Text variant='small'>
+              Importancia {i.Importancia} - Estado {i.Estado}
+            </Text>
+            <Text variant='tiny' style={{ color: NeutralColors.gray200 }}>
+              <img
+                src={require(`../assets/Flag_of_${i?.Pais}.svg`)}
+                height='10px'
+                style={{ marginRight: 10, paddingTop: 3 }}
+              />
+              Creado {new Date(i?.Created).toLocaleDateString('es-AR')} -
+              Modificacion {new Date(i?.Modified).toLocaleDateString('es-AR')}
+            </Text>
           </Stack>
-        </div>
-        <div>
-          <Label>Áreas Afectadas</Label>
-          <Stack horizontal>
-            {item.AreasAfectada.map((i) => (
-              <div
-                style={{
-                  padding: 5,
-                  backgroundColor: NeutralColors.gray20,
-                  marginRight: 10,
-                  borderRadius: 2,
-                }}
-              >
-                <Text>{i}</Text>
-              </div>
-            ))}
-          </Stack>
-        </div>
-        <div>
-          <Label>Área Responsables</Label>
-          <Stack horizontal>
-            {item.AreasResponsables.map((i) => (
-              <div
-                style={{
-                  padding: 5,
-                  backgroundColor: NeutralColors.gray20,
-                  marginRight: 10,
-                  borderRadius: 2,
-                }}
-              >
-                <Text>{i}</Text>
-              </div>
-            ))}
-          </Stack>
-        </div>
-        <div>
-          <Label>Detalle</Label>
-          <div>{item.Detalle}</div>
-        </div>
-        {item.Attachments && (
-          <div>
-            <Label>Imagenes/Adjuntos</Label>
-            {isLoading && <div>Cargando...</div>}
-            {!isLoading && adjuntos != null && (
-              <Stack>
-                {
-                adjuntos.map((i) => 
-                  <Link href={i.ServerRelativeUrl} target='_blank'>
-                    {i.FileName}
-                  </Link>
-                )}
-              </Stack>
-            )}
-          </div>
-        )}
-      </Stack>
+        </Stack>
+      </>
     );
   };
