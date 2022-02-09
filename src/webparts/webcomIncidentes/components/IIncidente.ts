@@ -6,6 +6,7 @@ export type IIncidente = {
   Pais: string;
   Title: string;
   Detalle: string;
+  Descripcion: string;
   Importancia: string;
   Estado: string;
   Negocio: string[];
