@@ -3,36 +3,40 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { sp } from "@pnp/sp/presets/all";
+import { sp } from '@pnp/sp/presets/all';
 
 import * as strings from 'WebcomIncidentesWebPartStrings';
-import {WebcomIncidentes, IWebcomIncidentesProps} from './components/WebcomIncidentes';
+import {
+  WebcomIncidentes,
+  IWebcomIncidentesProps,
+} from './components/WebcomIncidentes';
+import { IIncidentesAppProps, IncidentesApp } from './components/IncidentesApp';
 
 export interface IWebcomIncidentesWebPartProps {
   description: string;
 }
 
 export default class WebcomIncidentesWebPart extends BaseClientSideWebPart<IWebcomIncidentesWebPartProps> {
-
   public render(): void {
-    const element: React.ReactElement<IWebcomIncidentesProps> = React.createElement(
-      WebcomIncidentes,
-      {
-        description: this.properties.description
-      }
-    );
+    // const element: React.ReactElement<IWebcomIncidentesProps> = React.createElement(
+    //   WebcomIncidentes,
+    //   {
+    //     description: this.properties.description
+    //   }
+    // );
+    const element: React.ReactElement<IIncidentesAppProps> =
+      React.createElement(IncidentesApp, {});
 
     ReactDom.render(element, this.domElement);
-  }   
+  }
 
   protected onInit(): Promise<void> {
-
-    return super.onInit().then(_ => {
+    return super.onInit().then((_) => {
       sp.setup({
-        spfxContext: this.context
+        spfxContext: this.context,
       });
     });
   }
@@ -50,20 +54,20 @@ export default class WebcomIncidentesWebPart extends BaseClientSideWebPart<IWebc
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: strings.PropertyPaneDescription,
           },
           groups: [
             {
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                  label: strings.DescriptionFieldLabel,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }

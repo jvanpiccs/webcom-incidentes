@@ -9,7 +9,7 @@
       "name": "Pagina de inicio",
       "request": "launch",
       "type": "pwa-chrome",
-      "url": "https://claroaup.sharepoint.com/sites/webcom/SitePages/Inicio.aspx?debug=true&noredir=true&debugManifestsFile=https://localhost:4321/temp/manifests.js",
+      "url": "https://claroaup.sharepoint.com/sites/webcom/SitePages/Test/Test.aspx?debug=true&noredir=true&debugManifestsFile=https://localhost:4321/temp/manifests.js",
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "sourceMapPathOverrides": {

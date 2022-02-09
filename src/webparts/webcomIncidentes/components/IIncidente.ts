@@ -1,0 +1,24 @@
+export type IIncidente = {
+  FileSystemObjectType: number;
+  Id: number;
+  ServerRedirectedEmbedUri?: any;
+  ServerRedirectedEmbedUrl: string;
+  Pais: string;
+  Title: string;
+  Detalle: string;
+  Importancia: string;
+  Estado: string;
+  Negocio: string[];
+  AreasAfectada: string[];
+  AreasResponsables: string[];
+  ID: number;
+  ContentTypeId: string;
+  Modified: string;
+  Created: string;
+  AuthorId: number;
+  EditorId: number;
+  OData__UIVersionString: string;
+  Attachments: boolean;
+  GUID: string;
+  ComplianceAssetId?: any;
+};
