@@ -10,9 +10,11 @@ import { sp } from '@pnp/sp/presets/all';
 
 import * as strings from 'WebcomIncidentesWebPartStrings';
 import {
-  WebcomIncidentes,
-  IWebcomIncidentesProps,
-} from './components/WebcomIncidentes';
+  ThemeProvider,
+  ThemeChangedEventArgs,
+  IReadonlyTheme,
+} from '@microsoft/sp-component-base';
+
 import { IIncidentesAppProps, IncidentesApp } from './components/IncidentesApp';
 
 export interface IWebcomIncidentesWebPartProps {
@@ -28,12 +30,29 @@ export default class WebcomIncidentesWebPart extends BaseClientSideWebPart<IWebc
     //   }
     // );
     const element: React.ReactElement<IIncidentesAppProps> =
-      React.createElement(IncidentesApp, {});
+      React.createElement(IncidentesApp, { themeVariant: this._themeVariant });
 
     ReactDom.render(element, this.domElement);
   }
+  //theme
+  private _themeProvider: ThemeProvider;
+  private _themeVariant: IReadonlyTheme | undefined;
 
   protected onInit(): Promise<void> {
+    // Consume the new ThemeProvider service
+    this._themeProvider = this.context.serviceScope.consume(
+      ThemeProvider.serviceKey
+    );
+
+    // If it exists, get the theme variant
+    this._themeVariant = this._themeProvider.tryGetTheme();
+
+    // Register a handler to be notified if the theme variant changes
+    this._themeProvider.themeChangedEvent.add(
+      this,
+      this._handleThemeChangedEvent
+    );
+    // spfx
     return super.onInit().then((_) => {
       sp.setup({
         spfxContext: this.context,
@@ -70,4 +89,10 @@ export default class WebcomIncidentesWebPart extends BaseClientSideWebPart<IWebc
       ],
     };
   }
-}
+
+  //theme
+  private _handleThemeChangedEvent(args: ThemeChangedEventArgs): void {
+    this._themeVariant = args.theme;
+    this.render();
+  }
+} //end class

@@ -7,10 +7,12 @@ import {
   Link,
   Stack,
   Text,
+  ThemeProvider,
 } from '@fluentui/react';
 import useGetItems from '../services/useGetItems';
 import { MotionAnimations } from '@fluentui/react/node_modules/@fluentui/theme';
 import useCount from '../services/useCount';
+import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 const theme = getTheme();
 
@@ -21,11 +23,16 @@ const stackStyles: IStackStyles = {
     color: 'white',
   },
 };
-export interface IIncidentesAppProps {}
+
+export interface IIncidentesAppProps {
+  themeVariant: IReadonlyTheme | undefined;
+}
 
 export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
   props: React.PropsWithChildren<IIncidentesAppProps>
 ) => {
+  const { semanticColors }: IReadonlyTheme = props.themeVariant;
+
   const { items, isLoading } = useGetItems();
   const { count, increment, decrement, reset } = useCount(items?.length - 1);
   return (
@@ -33,7 +40,13 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
       {isLoading && 'Cargando...'}
 
       {!isLoading && items.length != 0 && (
-        <Stack styles={stackStyles}>
+        <Stack
+          style={{
+            color: semanticColors.bodyText,
+            padding: '10px 20px',
+            backgroundColor: semanticColors.bodyBackground,
+          }}
+        >
           <Stack
             horizontal
             horizontalAlign='space-between'
@@ -45,9 +58,8 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
             >
               {items[count]?.Detalle}
             </div>
-            <Stack horizontal horizontalAlign='center'>
+            <Stack horizontal verticalAlign='center'>
               <IconButton
-                style={{ color: 'white' }}
                 iconProps={{ iconName: 'ChevronLeft' }}
                 onClick={() => decrement()}
               />
@@ -55,7 +67,6 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
                 {count + 1} / {items.length}
               </div>
               <IconButton
-                style={{ color: 'white' }}
                 iconProps={{ iconName: 'ChevronRight' }}
                 onClick={() => increment()}
               />

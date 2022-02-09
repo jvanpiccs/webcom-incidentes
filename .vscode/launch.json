@@ -6,7 +6,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Pagina de inicio",
+      "name": "Pagina de test",
       "request": "launch",
       "type": "pwa-chrome",
       "url": "https://claroaup.sharepoint.com/sites/webcom/SitePages/Test/Test.aspx?debug=true&noredir=true&debugManifestsFile=https://localhost:4321/temp/manifests.js",
