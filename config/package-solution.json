@@ -3,7 +3,7 @@
   "solution": {
     "name": "Webcom Incidentes",
     "id": "e854f6ef-d760-4225-a793-d381d55e829d",
-    "version": "1.0.0.1",
+    "version": "1.0.0.2",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,

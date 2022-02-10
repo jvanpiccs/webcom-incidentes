@@ -29,7 +29,7 @@ export const IncidenteDetails: React.FunctionComponent<
             {item.Descripcion}
           </Text>
         </Stack.Item>
-        <Stack horizontal tokens={{ childrenGap: 10 }}>
+        <Stack horizontal tokens={{ childrenGap: 20 }}>
           <Stack.Item>
             <Label>Estado</Label>
             <Text>{item.Estado}</Text>
@@ -38,8 +38,12 @@ export const IncidenteDetails: React.FunctionComponent<
             <Label>Importancia</Label>
             <Text>{item.Importancia}</Text>
           </Stack.Item>
+          <Stack.Item>
+            <Label>Pais</Label>
+            <Text>{item.Pais}</Text>
+          </Stack.Item>
         </Stack>
-        <Stack horizontal tokens={{ childrenGap: 10 }}>
+        <Stack horizontal tokens={{ childrenGap: 20 }}>
           <Stack.Item>
             <Label>Negocio</Label>
             {item.Negocio.map((i) => (

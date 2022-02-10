@@ -12,7 +12,10 @@ export default function useGetItems() {
         'https://claroaup.sharepoint.com/sites/webcom/helpcomercial'
       )
         .lists.getById('d68085c2-24d1-4353-81ee-3f1201b62f17')
-        .items.getAll();
+        .items.getAll()
+        .then((data) => {
+          return data.filter((i) => i.Estado != 'Cerrado');
+        });
       console.log(newItems);
       setItems(newItems);
       setIsLoading(false);
