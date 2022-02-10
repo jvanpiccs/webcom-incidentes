@@ -22,7 +22,7 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
   const { semanticColors }: IReadonlyTheme = props.themeVariant;
   //! items y counter
   const { items, isLoading } = useGetItems();
-  const { count, increment, decrement } = useCount(items?.length - 1);
+  const { count, increment, decrement } = useCount(items?.length);
   const item = items?.[count];
 
   const buttonId = useId(`${item?.Id}`);

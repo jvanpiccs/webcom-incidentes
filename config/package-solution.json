@@ -10,7 +10,9 @@
     "developer": {
       "name": "Juan Picco",
       "websiteUrl": "https://github.com/jvanpiccs/",
-      "privacyUrl": "https://github.com/jvanpiccs/webcom-incidentes"
+      "privacyUrl": "https://github.com/jvanpiccs/webcom-incidentes",
+      "termsOfUseUrl": "",
+      "mpnId": ""
     }
   },
   "paths": {

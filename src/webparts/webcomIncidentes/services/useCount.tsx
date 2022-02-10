@@ -1,13 +1,13 @@
 import { AnimationClassNames } from '@fluentui/react';
 import { useState, useEffect } from 'react';
 
-export default function useCount(lenght?: number) {
-  const [count, setCount] = useState(0);
+export default function useCount(length?: number) {
+  const [count, setCount] = useState<number>(0);
   const reset = () => {
     setCount(0);
   };
   const increment = () => {
-    if (count == lenght) {
+    if (count >= length - 1) {
       reset();
     } else {
       setCount(count + 1);
@@ -15,7 +15,7 @@ export default function useCount(lenght?: number) {
   };
   const decrement = () => {
     if (count == 0) {
-      setCount(length);
+      setCount(length - 1);
     } else {
       setCount(count - 1);
     }
