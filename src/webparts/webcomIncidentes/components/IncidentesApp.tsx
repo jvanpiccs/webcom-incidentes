@@ -43,7 +43,6 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
 
   return (
     <>
-      {isLoading && `Cargando...`}
       {!isLoading && items.length != 0 && (
         <Stack className={styles.incidentes}>
           <Stack
