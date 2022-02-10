@@ -1,22 +1,17 @@
 import * as React from 'react';
 import {
-  Text,
+  AnimationClassNames,
   Callout,
   IconButton,
   Link,
-  mergeStyleSets,
   Stack,
 } from '@fluentui/react';
-import {
-  FontWeights,
-  MotionAnimations,
-} from '@fluentui/react/node_modules/@fluentui/theme';
+import { MotionAnimations } from '@fluentui/react/node_modules/@fluentui/theme';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import { useBoolean, useId } from '@fluentui/react-hooks';
 import useGetItems from '../services/useGetItems';
 import useCount from '../services/useCount';
 import { IncidenteDetails } from './IncidenteDetails';
-import { delay } from 'lodash';
 
 export interface IIncidentesAppProps {
   themeVariant: IReadonlyTheme | undefined;
@@ -25,19 +20,31 @@ export interface IIncidentesAppProps {
 export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
   props: React.PropsWithChildren<IIncidentesAppProps>
 ) => {
+  //!visibilidad del detalle
   const [isCalloutVisible, { toggle: toggleIsCalloutVisible }] =
     useBoolean(false);
 
   const { semanticColors }: IReadonlyTheme = props.themeVariant;
+  //! items y counter
   const { items, isLoading } = useGetItems();
-  const { count, increment, decrement, reset } = useCount(items?.length - 1);
+  const { count, increment, decrement } = useCount(items?.length - 1);
   const item = items?.[count];
 
-  const buttonId = useId(`incidenteId`);
+  const buttonId = useId(`${item?.Id}`);
   const labelId = useId(`incidenteLabelId`);
   const descriptionId = useId('descriptionId');
+  //incremento del counter cada 5 segundos
+  React.useEffect(() => {
+    let timer = setTimeout(() => {
+      if (!isCalloutVisible) {
+        increment();
+      }
+    }, 5000);
+    return () => {
+      clearTimeout(timer);
+    };
+  });
 
-  React.useEffect(() => {});
   return (
     <>
       {isLoading && 'Cargando...'}
@@ -48,6 +55,7 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
             color: semanticColors.accentButtonText,
             padding: '10px 20px',
             backgroundColor: semanticColors.accentButtonBackground,
+            animation: MotionAnimations.slideUpIn,
           }}
         >
           <Stack
@@ -60,8 +68,8 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
               onClick={() => {
                 toggleIsCalloutVisible();
               }}
+              className={AnimationClassNames.slideRightIn10}
               style={{
-                animation: MotionAnimations.fadeIn,
                 color: semanticColors.accentButtonText,
               }}
             >

@@ -1,8 +1,8 @@
+import { AnimationClassNames } from '@fluentui/react';
 import { useState, useEffect } from 'react';
 
 export default function useCount(lenght?: number) {
   const [count, setCount] = useState(0);
-
   const reset = () => {
     setCount(0);
   };
@@ -24,6 +24,5 @@ export default function useCount(lenght?: number) {
     count,
     increment,
     decrement,
-    reset,
   };
 }

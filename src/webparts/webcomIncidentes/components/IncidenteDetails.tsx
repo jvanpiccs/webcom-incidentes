@@ -1,13 +1,5 @@
 import * as React from 'react';
-import {
-  cssColor,
-  DefaultPalette,
-  FontWeights,
-  Label,
-  Separator,
-  Stack,
-  Text,
-} from '@fluentui/react';
+import { FontWeights, Label, Stack, Text } from '@fluentui/react';
 import { IIncidente } from './IIncidente';
 
 export interface IIncidenteDetailsProps {
@@ -25,12 +17,12 @@ export const IncidenteDetails: React.FunctionComponent<
           block
           variant='xLarge'
           style={{
+            marginBottom: 12,
             fontWeight: FontWeights.semilight,
           }}
         >
           {item.Title}
         </Text>
-        <Separator />
         <Text block>{item.Detalle}</Text>
         <Stack.Item>
           <Text block variant='small'>
