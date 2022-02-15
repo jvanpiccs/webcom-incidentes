@@ -63,6 +63,7 @@ export const IncidentesApp: React.FunctionComponent<IIncidentesAppProps> = (
                 {items[count]?.Detalle}
               </Link>
             </Text>
+
             {isCalloutVisible && (
               <Callout
                 style={{
