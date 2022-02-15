@@ -14,7 +14,15 @@ export default function useGetItems() {
         .lists.getById('d68085c2-24d1-4353-81ee-3f1201b62f17')
         .items.getAll()
         .then((data) => {
-          return data.filter((i) => i.Estado != 'Cerrado');
+          return data
+            .filter((i) => i.Estado != 'Cerrado')
+            .sort((a, b) => {
+              if (new Date(a.Modified) < new Date(b.Modified)) {
+                return 1;
+              } else {
+                return -1;
+              }
+            });
         });
       setItems(newItems);
       setIsLoading(false);
