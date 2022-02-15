@@ -1,0 +1,20 @@
+// @import 'office-ui-fabric-core/dist/sass/References';
+.incidentes {
+  background-color: '[theme: themePrimary]';
+  padding: 10px 20px;
+  transition: '[theme:ms-motion-slideRightIn]';
+  .link {
+    color: '[theme:white]';
+    user-select: none;
+  }
+  .icon {
+    color: '[theme:white]';
+    &:hover {
+      transition: all 0.2s;
+      background-color: '[theme:themeDark]';
+    }
+  }
+  .counter {
+    color: '[theme:white]';
+  }
+}
