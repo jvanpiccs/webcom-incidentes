@@ -1,4 +1,4 @@
-import { sp, Web } from '@pnp/sp/presets/all';
+import { Web } from '@pnp/sp/presets/all';
 import { useState, useEffect } from 'react';
 import { IIncidente } from '../components/IIncidente';
 
@@ -16,10 +16,8 @@ export default function useGetItems() {
         .then((data) => {
           return data.filter((i) => i.Estado != 'Cerrado');
         });
-      console.log(newItems);
       setItems(newItems);
       setIsLoading(false);
-      // console.log(JSON.stringify(newItems[0]));
     }
 
     fetchData();

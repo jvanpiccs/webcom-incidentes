@@ -39,7 +39,7 @@ export const IncidenteDetails: React.FunctionComponent<
             <Text>{item.Importancia}</Text>
           </Stack.Item>
           <Stack.Item>
-            <Label>Pais</Label>
+            <Label>País</Label>
             <Text>{item.Pais}</Text>
           </Stack.Item>
         </Stack>
