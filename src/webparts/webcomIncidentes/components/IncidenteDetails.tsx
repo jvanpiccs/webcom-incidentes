@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { FontWeights, Label, Stack, Text } from '@fluentui/react';
+import {
+  FontWeights,
+  Label,
+  SemanticColorSlots,
+  Stack,
+  Text,
+} from '@fluentui/react';
 import { IIncidente } from './IIncidente';
 
 export interface IIncidenteDetailsProps {

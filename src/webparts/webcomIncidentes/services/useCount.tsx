@@ -4,9 +4,6 @@ import { useState } from 'react';
 export default function useCount(length?: number) {
   const [count, setCount] = useState<number>(0);
   const [transitionClass, setTransitionClass] = useState<string>();
-  const reset = () => {
-    setCount(0);
-  };
   const increment = () => {
     setTransitionClass(AnimationClassNames.slideRightOut40);
     setTimeout(() => {
@@ -19,11 +16,15 @@ export default function useCount(length?: number) {
     }, 40);
   };
   const decrement = () => {
-    if (count == 0) {
-      setCount(length - 1);
-    } else {
-      setCount(count - 1);
-    }
+    setTransitionClass(AnimationClassNames.slideLeftOut40);
+    setTimeout(() => {
+      setTransitionClass(AnimationClassNames.slideLeftIn40);
+      if (count == 0) {
+        setCount(length - 1);
+      } else {
+        setCount(count - 1);
+      }
+    }, 40);
   };
   return {
     count,
